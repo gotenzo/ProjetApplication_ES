@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Escape !</title>
+  <script src="script.js"></script>
+</head>
+	<body>
+		<script type="text/javascript">
+			var Q = new Quintus({
+				development: true
+			})
+			
+			Q.include([
+				Quintus.Sprites,
+				Quintus.Scenes,
+				Quintus.Anim,
+				Quintus['2D'],
+				Quintus.Inuput,
+				Quintus.Touch,
+				Quintus.UI
+			])
+			
+			Q.setup('game', {
+				maximize: false,
+				width: 600,
+				height: 600
+			});
+			
+			Q.controls();
+			Q.touch();
+			
+			
+			Q.scene('startGame', function(stage) {
+				console.log('Lancement affiché !');
+				stage.insert(sprite_bg);
+				});
+				
+			Q.stageScene('startGame', 0);	
+			
+			var sprite_bg = new Q.Sprite({ x : 0, y: 0, w: Q.width, h: Q.height, type: Q.SPRITE_UI });
+			
+			sprite_bg.draw = function(ctx) {
+				cty.fillStyle = '#1D65D2';
+				ctx.fillRect(this.p.x, this.p.y, this.p.w, this.p.h);
+				
+				var degrade = ctx.createRadialGradient(Q.width/2, Q.height/2, 0, Q.width/2, Q.height/2, Q.width/2);
+				degrade.addColorStop(0, '#ffffff');
+				degrade.addColorStop(1, 'rgba(255, 255, 255, 0)');
+				ctx.fillStyle = degrade;
+				ctx.fillRect(0, 0, Q.width, Q.height);
+				
+				var title = stage.insert(new Q.UI.Text({
+					x: Q.width/2,
+					y: 50,
+					label: 'Escape !',
+					align: 'center',
+					family: 'Comic Sans MS, Comic Sans, cursive',
+					size: 48,
+					color: '#DE0D0D',
+				}));
+			}
+			
+		</script>
+	
+	<script src="quintus-all.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+#jeu{
+    width: 600px;
+    height: 400px;
+}
+#personnage{
+    z-index: 200; 
+    position: absolute; 
+    top: 20px; 
+    left: 70px;
+}
+
+body{
+    background: url('fond.jpg');
+}
